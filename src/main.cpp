@@ -5,9 +5,7 @@
 int main()
 {
     Algorithm algorithm;
-    auto image = algorithm.getImage("images/photo.ppm");
-
-    std::cout<<"Width: "<<image.width<<std::endl;
+    algorithm.performAndSave("data/photo.ppm", "data/raw.ppm");
 
     return 0;
 }

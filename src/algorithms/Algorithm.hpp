@@ -1,8 +1,9 @@
 #pragma once
 
-#include "../Image.hpp"
+#include "../images/Image.hpp"
 
 #include <string>
+#include <memory>
 
 class Algorithm
 {
@@ -10,9 +11,9 @@ public:
     Algorithm() = default;
     virtual ~Algorithm() = default;
 
-    // virtual bool performAndSave(const std::string &srcPath, const std::string &destPath) = 0;
+    virtual void performAndSave(const std::string &srcPath, const std::string &destPath);
 
-// protected:
-    Image getImage(const std::string &path);
+protected:
+    std::unique_ptr<Image> getImage(const std::string &path);
     bool skipComments(std::fstream &stream, char commentSign = '#');
 };
