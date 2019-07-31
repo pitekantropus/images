@@ -7,8 +7,11 @@
 class Negative : public Algorithm
 {
 public:
-    Negative();
-    ~Negative();
+    Negative() = default;
+    ~Negative() = default;
 
-    bool performAndSave(const std::string &srcPath, const std::string &destPath) override;
+    void performAndSave(const std::string &srcPath, const std::string &destPath) const override;
+
+private:
+    void makeNegative(std::unique_ptr<Image> &image) const;
 };

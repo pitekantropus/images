@@ -10,7 +10,7 @@
 void Algorithm::performAndSave(const std::string &srcPath, const std::string &destPath) const
 {
     auto image = getImage(srcPath);
-    image->save(destPath);
+    image->saveBinary(destPath);
 }
 
 std::unique_ptr<Image> Algorithm::getImage(const std::string &path) const

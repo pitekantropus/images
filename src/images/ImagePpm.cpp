@@ -2,7 +2,7 @@
 
 #include <fstream>
 
-void ImagePpm::save(const std::string &path) const
+void ImagePpm::saveAsText(const std::string &path) const
 {
     std::ofstream file(path);
     if(!file.is_open())
@@ -21,6 +21,28 @@ void ImagePpm::save(const std::string &path) const
             ++counter;
             std::string separator = counter % 6 ? " " : "\n";
             file << pixel.toString() << separator;
+        }
+    }
+}
+
+void ImagePpm::saveBinary(const std::string &path) const
+{
+    std::ofstream file(path);
+    if(!file.is_open())
+    {
+        throw std::string("Couldn't open file.");
+    }
+    file << "P6" << std::endl
+         << width << " " << height << std::endl
+         << maxValue << std::endl;
+
+    for(const auto &row : pixelMatrix)
+    {
+        for(const auto &pixel : row)
+        {
+            file.write((char*)&pixel.red, 1);
+            file.write((char*)&pixel.green, 1);
+            file.write((char*)&pixel.blue, 1);
         }
     }
 }
