@@ -13,19 +13,19 @@ void ImagePpm::save(const std::string &path) const
          << width << " " << height << std::endl
          << maxValue << std::endl;
 
-    uint8_t counter = 1;
+    uint8_t counter = 0;
     for(const auto &row : pixelMatrix)
     {
         for(const auto &pixel : row)
         {
-            std::string separator = counter % 6 ? "\n" : " ";
-            file << pixel.toString() << separator;
             ++counter;
+            std::string separator = counter % 6 ? " " : "\n";
+            file << pixel.toString() << separator;
         }
     }
 }
 
-void ImagePpm::loadBitmap(std::vector<char> pixels, uint32_t width, uint32_t height)
+void ImagePpm::loadBitmap(const std::vector<char> &pixels)
 {
     pixelMatrix.reserve(height);
 
