@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../images/Image.hpp"
+#include <images/Image.hpp>
 
 #include <string>
 #include <memory>

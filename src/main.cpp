@@ -1,12 +1,13 @@
-#include "algorithms/Algorithm.hpp"
-#include "algorithms/Negative.hpp"
+#include <algorithms/Negative.hpp>
+#include <algorithms/Shading.hpp>
+#include <algorithms/Masking.hpp>
 
 #include <iostream>
 
 int main()
 {
-    // Algorithm algorithm;
-    Negative algorithm;
+    PixelMask mask = {{0, 0, 0}, {0, 1, 0}, {0, 0, 0}};
+    Masking algorithm(std::move(mask));
     algorithm.performAndSave("../src/data/rebus.ppm", "../src/data/binary.ppm");
 
     return 0;

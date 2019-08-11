@@ -1,6 +1,6 @@
-#include "Algorithm.hpp"
-#include "../images/ImagePpm.hpp"
-#include "../utils/CommonTypes.hpp"
+#include <algorithms/Algorithm.hpp>
+#include <images/ImagePpm.hpp>
+#include <utils/CommonTypes.hpp>
 
 #include <fstream>
 #include <sstream>
@@ -62,8 +62,8 @@ std::unique_ptr<Image> Algorithm::getPpmImage(std::ifstream &file) const
     std::getline(file, line);
     std::stringstream str(line);
     str >> width >> height;
-    image->width = width;
-    image->height = height;
+    image->setWidth(width);
+    image->setHeight(height);
 
     skipComments(file);
     std::getline(file, line);

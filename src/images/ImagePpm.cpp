@@ -1,4 +1,4 @@
-#include "ImagePpm.hpp"
+#include <images/ImagePpm.hpp>
 
 #include <fstream>
 
@@ -58,8 +58,6 @@ void ImagePpm::loadBitmap(const std::vector<char> &pixels)
         for(size_t j = 0; j < 3*width; j+=3)
         {
             Pixel pixel;
-            pixel.xPos = j/3;
-            pixel.yPos = i;
             pixel.red = pixels[i*3*width + j];
             pixel.green = pixels[i*3*width + j + 1];
             pixel.blue = pixels[i*3*width + j + 2];
