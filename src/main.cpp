@@ -6,7 +6,7 @@
 
 int main()
 {
-    PixelMask mask = {{0, 0, 0}, {0, 1, 0}, {0, 0, 0}};
+    PixelMask mask = {{-1, -1, -1}, {-1, 9, -1}, {-1, -1, -1}};
     Masking algorithm(std::move(mask));
     algorithm.performAndSave("../src/data/rebus.ppm", "../src/data/binary.ppm");
 

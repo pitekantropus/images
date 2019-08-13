@@ -70,10 +70,25 @@ std::unique_ptr<Image> Algorithm::getPpmImage(std::ifstream &file) const
     image->maxValue = std::stoul(line);
 
     uint32_t numberOfValues = 3 * width * height;
-    std::vector<char> pixelsBuffer(numberOfValues);
-    file.read((char *)(&pixelsBuffer[0]), numberOfValues);
 
-    image->loadBitmap(pixelsBuffer);
+    if(image->imageType == "P3")
+    {
+        std::vector<int> pixelsBuffer;
+        pixelsBuffer.reserve(numberOfValues);
+        int k;
+        for(size_t i = 0; i < numberOfValues; i++)
+        {
+            file >> k;
+            pixelsBuffer.push_back(k);
+        }
+        image->loadBitmap(pixelsBuffer);
+    }
+    else
+    {
+        std::vector<char> pixelsBuffer(numberOfValues);
+        file.read((char *)(&pixelsBuffer[0]), numberOfValues);
+        image->loadBitmap(pixelsBuffer);
+    }
 
     return image;
 }

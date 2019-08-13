@@ -65,3 +65,22 @@ void ImagePpm::loadBitmap(const std::vector<char> &pixels)
         }
     }
 }
+
+void ImagePpm::loadBitmap(const std::vector<int> &pixels)
+{
+    pixelMatrix.reserve(height);
+
+    for(size_t i = 0; i < height; i++)
+    {
+        pixelMatrix.push_back({});
+        pixelMatrix[i].reserve(width);
+        for(size_t j = 0; j < 3*width; j+=3)
+        {
+            Pixel pixel;
+            pixel.red = static_cast<uint8_t>(pixels[i*3*width + j]);
+            pixel.green = static_cast<uint8_t>(pixels[i*3*width + j + 1]);
+            pixel.blue = static_cast<uint8_t>(pixels[i*3*width + j + 2]);
+            pixelMatrix[i].push_back(pixel);
+        }
+    }
+}

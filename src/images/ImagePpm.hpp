@@ -11,6 +11,7 @@ public:
     void saveAsText(const std::string &path) const;
     void saveBinary(const std::string &path) const;
     void loadBitmap(const std::vector<char> &pixels);
+    void loadBitmap(const std::vector<int> &pixels);
 
     std::string imageType;
     uint16_t maxValue;
