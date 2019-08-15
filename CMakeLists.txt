@@ -9,3 +9,6 @@ if(TESTS)
     add_subdirectory(tests)
 endif()
 
+IF(APPLE)
+    LINK_DIRECTORIES(/usr/local/lib)
+ENDIF()

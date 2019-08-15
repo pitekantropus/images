@@ -24,3 +24,21 @@ TEST(ImageTests, getMatrixWithBorderTest)
     EXPECT_EQ(result1, expected1);
     EXPECT_EQ(result2, expected2);
 }
+
+TEST(ImageTests, forEachPixelTest)
+{
+    PixelMatrix matrix = {{{44, 81, 23}, {251, 34, 19}},
+                          {{123, 221, 52}, {55, 22, 86}}};
+    PixelMatrix expected = {{{46, 85, 29}, {253, 38, 25}},
+                          {{125, 225, 58}, {57, 26, 92}}};
+
+    ImagePpm image;
+    image.setPixelMatrix(std::move(matrix));
+    image.forEachPixel([](Pixel& pixel){
+        pixel.red += 2;
+        pixel.green += 4;
+        pixel.blue += 6;
+    });
+
+    EXPECT_EQ(image.getPixelMatrix(), expected);
+}
