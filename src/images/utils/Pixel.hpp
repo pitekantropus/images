@@ -10,6 +10,7 @@ public:
     Pixel operator*(int d) const;
     Pixel operator/(int d) const;
     Pixel operator+(const Pixel &rhs);
+    bool operator==(Pixel rhs) const;
     void normalize();
 
     uint8_t red;

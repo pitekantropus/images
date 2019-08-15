@@ -22,9 +22,20 @@ void Image::setHeight(uint32_t height)
     this->height = height;
 }
 
-PixelMatrix& Image::getPixelMatrix()
+const PixelMatrix& Image::getPixelMatrix()
 {
     return pixelMatrix;
+}
+
+void Image::setPixelMatrix(PixelMatrix matrix)
+{
+    pixelMatrix = std::move(matrix);
+    height = pixelMatrix.size();
+    width = 0;
+    if(height > 0)
+    {
+        width = pixelMatrix[0].size();
+    }
 }
 
 void Image::setPixel(uint32_t posX, uint32_t posY, Pixel pixel)

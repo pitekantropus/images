@@ -39,3 +39,11 @@ Pixel Pixel::operator+(const Pixel &rhs)
     pixel.blue += rhs.blue;
     return pixel;
 }
+
+bool Pixel::operator==(Pixel rhs) const
+{
+    Pixel pixel = std::move(rhs);
+    return red == pixel.red &&
+           green == pixel.green &&
+           blue == pixel.blue;
+}

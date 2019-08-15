@@ -21,7 +21,8 @@ public:
     void setWidth(uint32_t width);
     uint32_t getHeight() const;
     void setHeight(uint32_t height);
-    PixelMatrix& getPixelMatrix();
+    const PixelMatrix& getPixelMatrix();
+    void setPixelMatrix(PixelMatrix matrix);
     void setPixel(uint32_t posX, uint32_t posY, Pixel pixel);
 
     void forEachPixel(std::function<void(Pixel&)> function);

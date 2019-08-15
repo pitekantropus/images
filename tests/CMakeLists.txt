@@ -4,9 +4,13 @@ project (images_tests)
 
 include_directories(${CMAKE_SOURCE_DIR}/src)
 
-file(GLOB_RECURSE SOURCES *.cpp)
+file(GLOB_RECURSE TEST_SOURCES *.cpp)
 
-add_executable(${PROJECT_NAME} ${SOURCES})
+set(SOURCES ${CMAKE_SOURCE_DIR}/src/images/Image.cpp
+            ${CMAKE_SOURCE_DIR}/src/images/ImagePpm.cpp
+            ${CMAKE_SOURCE_DIR}/src/images/utils/Pixel.cpp)
+
+add_executable(${PROJECT_NAME} ${TEST_SOURCES} ${SOURCES})
 
 target_link_libraries(${PROJECT_NAME} gtest gtest_main pthread)
 

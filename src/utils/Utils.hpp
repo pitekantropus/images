@@ -15,7 +15,8 @@ struct Item
 
     bool operator==(Item rhs) const
     {
-        return key == rhs.key && value == rhs.value;
+        Item item = std::move(rhs);
+        return key == item.key && value == item.value;
     }
 };
 
