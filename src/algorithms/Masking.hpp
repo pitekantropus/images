@@ -15,10 +15,10 @@ public:
     void performAndSave(const std::string &srcPath, const std::string &destPath) const override;
 
 private:
-    PixelMask mask;
-    uint32_t width;
-    uint32_t height;
-    int sum;
+    PixelMask _mask;
+    uint32_t _width;
+    uint32_t _height;
+    int _sum;
 
     void applyMask(std::unique_ptr<Image> &image) const;
 };

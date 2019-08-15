@@ -22,7 +22,7 @@ void Image::setHeight(uint32_t height)
     this->height = height;
 }
 
-const PixelMatrix& Image::getPixelMatrix()
+const PixelMatrix& Image::getPixelMatrix() const
 {
     return pixelMatrix;
 }

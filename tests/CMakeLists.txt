@@ -8,7 +8,10 @@ file(GLOB_RECURSE TEST_SOURCES *.cpp)
 
 set(SOURCES ${CMAKE_SOURCE_DIR}/src/images/Image.cpp
             ${CMAKE_SOURCE_DIR}/src/images/ImagePpm.cpp
-            ${CMAKE_SOURCE_DIR}/src/images/utils/Pixel.cpp)
+            ${CMAKE_SOURCE_DIR}/src/images/utils/Pixel.cpp
+            ${CMAKE_SOURCE_DIR}/src/images/utils/RawPixel.cpp
+            ${CMAKE_SOURCE_DIR}/src/algorithms/Masking.cpp
+            ${CMAKE_SOURCE_DIR}/src/algorithms/Algorithm.cpp)
 
 add_executable(${PROJECT_NAME} ${TEST_SOURCES} ${SOURCES})
 

@@ -4,19 +4,20 @@
 #include <iostream>
 
 Masking::Masking(PixelMask mask)
-    : mask(mask)
+    : _mask(std::move(mask))
 {
-    height = mask.size();
-    width = height > 0 ? mask[0].size() : 0;
-    sum = 0;
-    for(auto line : mask)
+    _height = _mask.size();
+    _width = _height > 0 ? _mask[0].size() : 0;
+    _sum = 0;
+    for(auto line : _mask)
     {
         for(auto factor : line)
         {
-            sum += factor;
+            _sum += factor;
         }
     }
-    if(sum == 0) sum = 1;
+    if(_sum == 0) _sum = 1;
+    std::cout<<"Height: "<<_height<<" Width: "<<_width<<std::endl;
 }
 
 void Masking::performAndSave(const std::string &srcPath, const std::string &destPath) const
@@ -28,20 +29,20 @@ void Masking::performAndSave(const std::string &srcPath, const std::string &dest
 
 void Masking::applyMask(std::unique_ptr<Image> &image) const
 {
-    PixelMatrix extendedMatrix = image->getMatrixWithBorder(width / 2, height / 2);
+    PixelMatrix extendedMatrix = image->getMatrixWithBorder(_width / 2, _height / 2);
     for(size_t i = 0; i < image->getHeight(); i++)
     {
         for(size_t j = 0; j < image->getWidth(); j++)
         {
             RawPixel pixel = {};
-            for(size_t k = 0; k < height; k++)
+            for(size_t k = 0; k < _height; k++)
             {
-                for(size_t l = 0; l < width; l++)
+                for(size_t l = 0; l < _width; l++)
                 {
-                    pixel = pixel + RawPixel(extendedMatrix[i + k][j + l]) * mask[k][l];
+                    pixel = pixel + RawPixel(extendedMatrix[i + k][j + l]) * _mask[k][l];
                 }
             }
-            pixel = pixel / sum;
+            pixel = pixel / _sum;
             pixel.normalize();
             image->setPixel(j, i, pixel.getPixel());
         }
