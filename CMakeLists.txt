@@ -4,8 +4,8 @@ project (images)
 
 set(CMAKE_CXX_STANDARD 14)
 
-include_directories (${PROJECT_SOURCE_DIR}/src)
+add_subdirectory(src)
+if(TESTS)
+    add_subdirectory(tests)
+endif()
 
-file(GLOB_RECURSE IMAGES_SOURCES src/*.cpp)
-
-add_executable(${PROJECT_NAME} ${IMAGES_SOURCES})
