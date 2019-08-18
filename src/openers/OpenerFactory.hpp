@@ -1,7 +1,7 @@
 #include <string>
 #include <memory>
 
-class Image;
+class ImageOpener;
 enum class FileType;
 
 class OpenerFactory
@@ -9,7 +9,7 @@ class OpenerFactory
 public:
     OpenerFactory(const std::string &path);
 
-    std::unique_ptr<Image> getOpener() const;
+    std::unique_ptr<ImageOpener> getOpener() const;
 
 private:
     FileType getFileExtension() const;

@@ -5,13 +5,9 @@ project (images_tests)
 include_directories(${CMAKE_SOURCE_DIR}/src)
 
 file(GLOB_RECURSE TEST_SOURCES *.cpp)
+file(GLOB_RECURSE SOURCES ${CMAKE_SOURCE_DIR}/*.cpp)
 
-set(SOURCES ${CMAKE_SOURCE_DIR}/src/images/Image.cpp
-            ${CMAKE_SOURCE_DIR}/src/images/ImagePpm.cpp
-            ${CMAKE_SOURCE_DIR}/src/images/utils/Pixel.cpp
-            ${CMAKE_SOURCE_DIR}/src/images/utils/RawPixel.cpp
-            ${CMAKE_SOURCE_DIR}/src/algorithms/Masking.cpp
-            ${CMAKE_SOURCE_DIR}/src/algorithms/Algorithm.cpp)
+list(REMOVE_ITEM SOURCES ${CMAKE_SOURCE_DIR}/main.cpp)
 
 add_executable(${PROJECT_NAME} ${TEST_SOURCES} ${SOURCES})
 

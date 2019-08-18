@@ -2,9 +2,7 @@
 #include <images/ImagePpm.hpp>
 #include <memory>
 
-#define private public
 #include <algorithms/Masking.hpp>
-#undef private
 
 
 TEST(MaskingTests, applyMaskTest1)
@@ -20,7 +18,7 @@ TEST(MaskingTests, applyMaskTest1)
                   {0, 0, 0},
                   {0, 0, 0}});
 
-    mask.applyMask(image);
+    mask.apply(*image);
     EXPECT_EQ(expected, image->getPixelMatrix());
 }
 
@@ -35,6 +33,6 @@ TEST(MaskingTests, applyMaskTest2)
                   {0, 1, 0},
                   {0, 0, 0}});
 
-    mask.applyMask(image);
+    mask.apply(*image);
     EXPECT_EQ(matrix, image->getPixelMatrix());
 }

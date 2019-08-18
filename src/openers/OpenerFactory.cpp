@@ -1,18 +1,18 @@
 #include <openers/OpenerFactory.hpp>
-#include <images/Image.hpp>
+#include <openers/PpmOpener.hpp>
 #include <utils/CommonTypes.hpp>
 
 OpenerFactory::OpenerFactory(const std::string &path)
     : _path(path)
 {}
 
-std::unique_ptr<Image> OpenerFactory::getOpener() const
+std::unique_ptr<ImageOpener> OpenerFactory::getOpener() const
 {
     switch(getFileExtension())
     {
         case FileType::PPM:
         {
-            return std::make_unique<ImagePpm>(_path);
+            return std::make_unique<PpmOpener>(_path);
         }
         case FileType::UNSUPPORTED:
         default:

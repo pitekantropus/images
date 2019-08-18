@@ -1,15 +1,9 @@
-#include "Negative.hpp"
+#include <algorithms/Negative.hpp>
+#include <images/Image.hpp>
 
-void Negative::performAndSave(const std::string &srcPath, const std::string &destPath) const
+void Negative::apply(Image &image) const
 {
-    auto image = getImage(srcPath);
-    makeNegative(image);
-    image->saveBinary(destPath);
-}
-
-void Negative::makeNegative(std::unique_ptr<Image> &image) const
-{
-    image->forEachPixel([](Pixel &pixel){
+    image.forEachPixel([](Pixel &pixel){
         pixel.red = 255 - pixel.red;
         pixel.green = 255 - pixel.green;
         pixel.blue = 255 - pixel.blue;

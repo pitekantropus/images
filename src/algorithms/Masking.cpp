@@ -1,5 +1,6 @@
 #include <algorithms/Masking.hpp>
 #include <images/utils/RawPixel.hpp>
+#include <images/Image.hpp>
 
 #include <iostream>
 
@@ -20,19 +21,12 @@ Masking::Masking(PixelMask mask)
     std::cout<<"Height: "<<_height<<" Width: "<<_width<<std::endl;
 }
 
-void Masking::performAndSave(const std::string &srcPath, const std::string &destPath) const
+void Masking::apply(Image &image) const
 {
-    auto image = getImage(srcPath);
-    applyMask(image);
-    image->saveAsText(destPath);
-}
-
-void Masking::applyMask(std::unique_ptr<Image> &image) const
-{
-    PixelMatrix extendedMatrix = image->getMatrixWithBorder(_width / 2, _height / 2);
-    for(size_t i = 0; i < image->getHeight(); i++)
+    PixelMatrix extendedMatrix = image.getMatrixWithBorder(_width / 2, _height / 2);
+    for(size_t i = 0; i < image.getHeight(); i++)
     {
-        for(size_t j = 0; j < image->getWidth(); j++)
+        for(size_t j = 0; j < image.getWidth(); j++)
         {
             RawPixel pixel = {};
             for(size_t k = 0; k < _height; k++)
@@ -44,7 +38,7 @@ void Masking::applyMask(std::unique_ptr<Image> &image) const
             }
             pixel = pixel / _sum;
             pixel.normalize();
-            image->setPixel(j, i, pixel.getPixel());
+            image.setPixel(j, i, pixel.getPixel());
         }
     }
 }

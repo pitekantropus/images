@@ -3,6 +3,7 @@
 #include <algorithms/Algorithm.hpp>
 
 #include <string>
+#include <vector>
 
 using PixelMask = std::vector<std::vector<int>>;
 
@@ -12,13 +13,11 @@ public:
     Masking(PixelMask mask);
     ~Masking() = default;
 
-    void performAndSave(const std::string &srcPath, const std::string &destPath) const override;
+    void apply(Image &image) const override;
 
 private:
     PixelMask _mask;
     uint32_t _width;
     uint32_t _height;
     int _sum;
-
-    void applyMask(std::unique_ptr<Image> &image) const;
 };

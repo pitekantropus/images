@@ -1,20 +1,18 @@
 #include <openers/ImageOpener.hpp>
 #include <utils/CommonTypes.hpp>
 
+#include <fstream>
+
 ImageOpener::ImageOpener(const std::string &path)
     : _path(path)
 {}
 
-FileType ImageOpener::getFileExtension() const
+std::ifstream ImageOpener::getImageFile() const
 {
-    auto pos = _path.find_last_of('.');
-    const std::string extension = _path.substr(pos+1);
-    if(extension == "ppm")
+    std::ifstream file(_path);
+    if(!file.is_open())
     {
-        return FileType::PPM;
+        throw std::string("Couldn't open file.");
     }
-    else
-    {
-        return FileType::UNSUPPORTED;
-    }
+    return file;
 }

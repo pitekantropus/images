@@ -1,10 +1,10 @@
 #pragma once
 
-#include <images/Image.hpp>
-
 #include <string>
 #include <memory>
 
+class ifstream;
+class Image;
 enum class FileType;
 
 class ImageOpener
@@ -16,5 +16,7 @@ public:
     virtual std::unique_ptr<Image> getImage() const = 0;
 
 protected:
+    virtual std::ifstream getImageFile() const;
+
     std::string _path;
 };
